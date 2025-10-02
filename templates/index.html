@@ -159,12 +159,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-          <li class="nav-item"><a class="nav-link" href="flashcards.html">Flashcards</a></li>
-          <li class="nav-item"><a class="nav-link" href="notes.html">Notes</a></li>
-          <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <nav class="navbar-nav">
+  <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+  <a class="nav-link" href="{{ url_for('flashcards_page') }}">Flashcards</a>
+  <a class="nav-link" href="{{ url_for('notes_page') }}">Notes</a>
+  <a class="nav-link" href="{{ url_for('bridge_page') }}">Bridge</a>
+</nav>
         </ul>
       </div>
     </div>
