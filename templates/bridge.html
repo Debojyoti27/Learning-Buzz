@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bridge - Learning Buzz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+    }
+    .navbar-brand {
+      font-weight: 800;
+      background: linear-gradient(90deg, #1E90FF, #00CED1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-link { color: #fff !important; }
+    .nav-link:hover { color: #1E90FF !important; }
+
+    .page-header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: url("{{ url_for('static', filename='images/bridge-bg.jpg') }}") no-repeat center/cover;
+      position: relative;
+    }
+    .page-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+    }
+    .page-header * { position: relative; z-index: 1; }
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #1E90FF, #00CED1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      padding: 20px;
+      text-align: center;
+      border-top: 2px solid #1E90FF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Learning Buzz</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('flashcards_page') }}">Flashcards</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('notes_page') }}">Notes</a></li>
+          <li class="nav-item"><a class="nav-link active" href="{{ url_for('bridge_page') }}">Bridge</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section class="page-header">
+    <h1>Bridge</h1>
+    <p>Connecting your learning tools in one place</p>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="content">
+    <h2>What is Bridge?</h2>
+    <p>
+      The Bridge connects your flashcards, notes, and quizzes together.  
+      Here, you can find quick shortcuts, personalized recommendations, and a unified learning experience.
+    </p>
+    <p>
+      Soon, AI will help you move seamlessly between study modes — flashcards, notes, and quizzes!
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Learning Buzz. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
