@@ -13,14 +13,17 @@
       font-family: 'Poppins', sans-serif;
       background: #111;
       color: #fff;
+      scroll-behavior: smooth;
     }
+
+    /* Navbar */
     .navbar {
       background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(5px);
     }
     .navbar-brand {
       font-weight: 800;
-      background:linear-gradient(90deg, #2EE59D, #ffffff);
+      background: linear-gradient(90deg, #2EE59D, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-size: 1.6rem;
@@ -28,10 +31,11 @@
     .nav-link { color: white !important; margin: 0 5px; }
     .nav-link:hover, .nav-link.active { color: #FFD700 !important; }
 
+    /* Page Header */
     .page-header {
       text-align: center;
       padding: 80px 20px 40px;
-      background: url("static/images/notes-bg.jpg") no-repeat center center/cover;
+      background: url("{{ url_for('static', filename='images/notes-bg.jpg') }}") no-repeat center center/cover;
       position: relative;
     }
     .page-header::before {
@@ -50,6 +54,7 @@
     }
     .page-header p { font-size: 1.2rem; opacity: 0.9; }
 
+    /* Input Section */
     .input-section {
       padding: 40px 20px;
       max-width: 900px;
@@ -100,18 +105,16 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Learning Buzz</a>
+      <a class="navbar-brand" href="{{ url_for('home') }}">Learning Buzz</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          
-  <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-  <a class="nav-link" href="{{ url_for('flashcards_page') }}">Flashcards</a>
-  <a class="nav-link" href="{{ url_for('notes_page') }}">Notes</a>
-  <a class="nav-link" href="{{ url_for('bridge_page') }}">Bridge</a>
-
+          <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          <a class="nav-link" href="{{ url_for('flashcards_page') }}">Flashcards</a>
+          <a class="nav-link active" href="{{ url_for('notes_page') }}">Notes</a>
+          <a class="nav-link" href="{{ url_for('bridge_page') }}">Bridge</a>
         </ul>
       </div>
     </div>
@@ -120,14 +123,14 @@
   <!-- PAGE HEADER -->
   <section class="page-header">
     <h1>Smart Notes</h1>
-    <p>Create notes and download them as PDF!</p>
+    <p>Generate AI-powered notes and download as PDF!</p>
   </section>
 
   <!-- INPUT SECTION -->
   <section class="input-section">
-    <textarea id="notesInput" placeholder="Paste your notes here..."></textarea>
+    <textarea id="notesInput" placeholder="Paste your text here or type a topic..."></textarea>
     <br>
-    <button class="btn-generate" onclick="downloadPDF()">Download PDF</button>
+    <button class="btn-generate" onclick="generateAndDownload()">Generate & Download PDF</button>
   </section>
 
   <!-- FOOTER -->
@@ -141,16 +144,31 @@
   </footer>
 
   <script>
-    async function downloadPDF() {
+    async function generateAndDownload() {
       const { jsPDF } = window.jspdf;
       const inputText = document.getElementById("notesInput").value.trim();
-      if(!inputText) { alert("Please enter some notes!"); return; }
+      if(!inputText) { alert("Please enter some text!"); return; }
 
-      const doc = new jsPDF();
-      const lines = doc.splitTextToSize(inputText, 180); // wrap text
-      doc.setFontSize(12);
-      doc.text(lines, 15, 20);
-      doc.save("My_Notes.pdf");
+      try {
+        // Call Flask backend AI endpoint
+        const response = await fetch("{{ url_for('notes_ai') }}", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: inputText })
+        });
+        const data = await response.json();
+        const finalText = data.notes || inputText;
+
+        // Generate PDF
+        const doc = new jsPDF();
+        const lines = doc.splitTextToSize(finalText, 180);
+        doc.setFontSize(12);
+        doc.text(lines, 15, 20);
+        doc.save("My_Notes.pdf");
+
+      } catch(err) {
+        alert("Error generating notes: " + err.message);
+      }
     }
   </script>
 
