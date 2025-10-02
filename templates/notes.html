@@ -106,11 +106,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="flashcards.html">Flashcards</a></li>
-          <li class="nav-item"><a class="nav-link active" href="notes.html">Notes</a></li>
-          <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          
+  <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+  <a class="nav-link" href="{{ url_for('flashcards_page') }}">Flashcards</a>
+  <a class="nav-link" href="{{ url_for('notes_page') }}">Notes</a>
+  <a class="nav-link" href="{{ url_for('bridge_page') }}">Bridge</a>
+
         </ul>
       </div>
     </div>
