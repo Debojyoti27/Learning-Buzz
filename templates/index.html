@@ -150,31 +150,22 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="{{ url_for('home') }}">Learning Buzz</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-          <a class="nav-link" href="{{ url_for('flashcards_page') }}">Flashcards</a>
-          <a class="nav-link" href="{{ url_for('notes_page') }}">Notes</a>
-          <a class="nav-link" href="{{ url_for('bridge_page') }}">Bridge</a>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <div class="hero" id="hero">
-    <h1 class="logo-text">📚 Study Helper</h1>
-    <p class="tagline">Learn smarter, not harder</p>
-    <div>
-      <a href="#features" class="btn btn-custom">Explore Features</a>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('home') }}">Learning Buzz</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('flashcards_page') }}">Flashcards</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('notes_page') }}">Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('bridge_page') }}">Bridge</a></li>
+      </ul>
     </div>
   </div>
+</nav>
 
   <!-- FEATURES -->
   <div id="features">
