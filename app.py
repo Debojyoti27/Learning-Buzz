@@ -15,15 +15,15 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 def home():
     return render_template("index.html")
 
-@app.route("/flashcards_page")
+@app.route("/flashcards")
 def flashcards_page():
     return render_template("flashcards.html")
 
-@app.route("/notes_page")
+@app.route("/notes")
 def notes_page():
     return render_template("notes.html")
 
-@app.route("/bridge_page")
+@app.route("/bridge")
 def bridge_page():
     return render_template("bridge.html")
 
