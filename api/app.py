@@ -81,6 +81,4 @@ def notes_api():
     return send_file(pdf_buffer, as_attachment=True, download_name="notes.pdf", mimetype="application/pdf")
 
 # ---------- MAIN ----------
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+app=app
