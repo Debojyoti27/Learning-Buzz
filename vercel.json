@@ -1,9 +1,22 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/app.py", "use": "@vercel/python" }
+    {
+      "src": "API/app.py",
+      "use": "@vercel/python"
+    }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "api/app.py" }
-  ]
+    { "src": "/flashcards", "dest": "API/app.py" },
+    { "src": "/notes", "dest": "API/app.py" }
+  ],
+  "env": {
+    "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY"
+  },
+  "functions": {
+    "API/app.py": {
+      "maxDuration": 10,
+      "memory": 512
+    }
+  }
 }
